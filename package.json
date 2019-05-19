@@ -19,10 +19,10 @@
     "babel-loader": "^6.1.0",
     "babel-polyfill": "^6.1.19",
     "babel-preset-es2015": "^6.1.18",
-    "http-server": "^0.8.5",
+    "http-server": "^0.11.1",
     "opener": "^1.4.1",
     "uglify-js": "^2.6.1",
-    "webpack": "^1.12.6"
+    "webpack": "^4.31.0"
   },
   "dependencies": {
     "gsap": "^1.18.0"
