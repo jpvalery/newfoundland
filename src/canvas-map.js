@@ -122,13 +122,13 @@ const CanvasMap=(props)=>{
         trailColor:null,
         trailWidth:null,
         trailDash:[2,4],
-        trailVisitedColor:'#8EC641',
+        trailVisitedColor:'#DB466E',
         trailVisitedWidth:4,
 
         pointColor:null,
         pointRadius:null,
 
-        pointFutureColor:'#ccc',
+        pointFutureColor:'#aaa',
         pointPresentColor:null,
         pointPastColor:null,
 
@@ -140,7 +140,7 @@ const CanvasMap=(props)=>{
     get trailColor(){
       if(typeof this.props !='undefined')
         if(this.props.trailColor!=null) return this.props.trailColor
-      if(this.trailPath==null) return '#ccc'
+      if(this.trailPath==null) return 'RGBA(38, 46, 69, 0.33)'
       return this.trailPath.getAttribute('stroke')
     },
     get trailWidth(){
@@ -636,8 +636,8 @@ const CanvasMap=(props)=>{
           this.props.fontPresentColor,
           this.props.fontFutureColor
         )
-        this.ctx.strokeStyle='#FDFCEC'
-        this.ctx.lineWidth=6
+        this.ctx.strokeStyle='#e3dac9'
+        this.ctx.lineWidth=2
         let pos=add(point,{x:20*inverseZoom,y:0})
         this.ctx.strokeText(point.label,...canvasPos(pos))
         this.ctx.fillText(point.label,...canvasPos(pos))
@@ -781,13 +781,8 @@ const CanvasMap=(props)=>{
       let blendWorks=setCompositeOperation(this.ctx,'screen')
 
       let gradient=this.ctx.createLinearGradient(this.sectionsBounds[0].right,0,this.sectionsBounds[0].right+200,0)
-      if(blendWorks){
-        gradient.addColorStop(0,'rgba(185, 217, 151, 1)')
-        gradient.addColorStop(1,"rgba(185, 217, 151, 0)")
-      }else{
         gradient.addColorStop(0,'rgba(255, 255, 255, 0.85)')
         gradient.addColorStop(1,"rgba(255, 255, 255, 0)")
-      }
       this.ctx.fillStyle=gradient
 
       // this.ctx.fillStyle='rgba(185, 217, 151, 1)'
