@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'youngserif';
+    src: url('youngserif-regular.woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'wanderlust';
+    src: url('wanderlust.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
