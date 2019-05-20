@@ -655,7 +655,7 @@ const CanvasMap=(props)=>{
         }
         let angle=Math.atan2(
           trailTip.y-trailTip2.y,
-          trailTip.x-trailTip2.x
+          trailTip.x-trailTip2.x+180
         )
         this.ctx.save()
         this.ctx.translate(
