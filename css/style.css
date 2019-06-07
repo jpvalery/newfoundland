@@ -242,9 +242,18 @@ a:focus {
 }
 
 
-/* Related demos */
+/* Related demos & Footer */
 
 .content--related {
+	position: relative;
+	z-index: 1000;
+	padding: 10em 2em;
+	text-align: center;
+	color: #fff;
+	background: #181922;
+}
+
+.content--related .footer {
 	position: relative;
 	z-index: 1000;
 	padding: 10em 2em;
