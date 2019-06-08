@@ -16,22 +16,22 @@
 }
 
 body {
-	font-family: 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	color: #5d5c56;
-	background: #fff;
+	font-family: mosk, Helvetica, Arial, sans-serif;
+	color: #434C5E;
+	background: #ECEFF4;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
 
 a {
 	text-decoration: none;
-	color: #47dbb4;
+	color: #88C0D0;
 	outline: none;
 }
 
 a:hover,
 a:focus {
-	color: #33b996;
+	color: #6DD2DA;
 }
 
 .hidden {
@@ -71,7 +71,7 @@ a:focus {
 	min-height: 600px;
 	padding: 2em 1em 4em;
 	text-align: center;
-	color: #fff;
+	color: #ECEFF4;
 	background: #002D42 /* url(../img/journey/2.jpg) no-repeat center center*/;
 	background-size: cover;
 }
@@ -181,7 +181,7 @@ a:focus {
 	margin: 0 0 3em;
 	padding: 3em;
 	text-align: center;
-	color: #fff;
+	color: #ECEFF4;
 	background: #16161D;
 }
 
@@ -197,65 +197,9 @@ a:focus {
 .intro span {
 	display: block;
 	font-family: 'youngserif';
-	padding: 1em 0 1em 10em;
-	color: #464b4b;
+	padding: 2em 0 1em 10em;
+	color: #D8DEE9;
 }
-
-
-/* Top Navigation Style */
-
-.links {
-	position: relative;
-	display: inline-block;
-	text-align: center;
-	white-space: nowrap;
-}
-
-.links::after {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 50%;
-	width: 1px;
-	height: 100%;
-	background: rgba(255, 255, 255, 0.5);
-	-webkit-transform: rotate3d(0, 0, 1, 22.5deg);
-	transform: rotate3d(0, 0, 1, 22.5deg);
-}
-
-.icon {
-	display: inline-block;
-	width: 1.5em;
-	margin: 0.5em;
-	padding: 0em 0;
-	text-decoration: none;
-}
-
-.icon span {
-	display: none;
-}
-
-.icon:before {
-	font-family: 'codropsicons';
-	font-weight: normal;
-	font-style: normal;
-	font-variant: normal;
-	line-height: 1;
-	margin: 0 5px;
-	text-transform: none;
-	-webkit-font-smoothing: antialiased;
-	speak: none;
-}
-
-.icon--drop:before {
-	content: '\e001';
-	color: #09c;
-}
-
-.icon--prev:before {
-	content: '\e004';
-}
-
 
 /* Demo links */
 
@@ -300,25 +244,29 @@ a:focus {
 	background: #16161D;
 }
 
-.col_footer{
+.col_footer {
 	display: inline-block;
 	padding: 0 3em;
 	text-align:left;
 	vertical-align: top;
 }
 
-.col_credits, .col_contact{
+.col_credits, .col_contact {
 		max-width:20%;
 }
 
-.col_acknowledgements{
+.col_acknowledgements {
 	max-width:35%;
 }
 
-ul{
+ul {
 	padding-left: 1em;
 	list-style-type: circle;
 	/* list-style-image: url('../img/ferry.svg'); */
+}
+
+li {
+	padding:0.25em 0;
 }
 
 .info {
@@ -357,13 +305,13 @@ ul{
 
 .text {
 	position: relative;
-	z-index: 1000;
+	z-index: 2000;
 	padding: 5em 3em;
 }
 
 .text section {
 	font-size: 1.25em;
-	line-height: 1.7;
+	line-height: 1.4;
 }
 
 .text section h2 {
@@ -393,7 +341,7 @@ ul{
 	line-height: 0.9;
 	display: block;
 	padding: 0.15em 0 0.35em;
-	color: #5f646c;
+	color: #3B4252;
 }
 
 .text figure {
@@ -407,13 +355,13 @@ ul{
 .text figcaption {
 	font-size: 0.85em;
 	font-style: italic;
-	padding: 1em 1.5em 0;
+	padding: 0.5em 1.5em;
 	text-align: center;
-	color: #5f646c;
+	color: #3B4252;
 }
 
 .text section p {
-	font-size: 0.95em;
+	font-size: 1em;
 	margin: 0.5em 0 1.5em;
 }
 

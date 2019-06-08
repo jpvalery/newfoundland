@@ -11,3 +11,15 @@
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'mosk';
+    src: url('mosk/Mosk Normal 400.ttf');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'mosk';
+    src: url('mosk/Mosk Bold 700.ttf');
+    font-weight: 700;
+}
