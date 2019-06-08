@@ -646,32 +646,6 @@ const CanvasMap=(props)=>{
       let drawLabels=()=>
         this.points.forEach(drawLabel)
 
-      let drawIcon=()=>{
-        if(icon==null) return
-
-        let iconCenter={
-          x:icon.width/2,
-          y:icon.height/2
-        }
-        let angle=Math.atan2(
-          trailTip.y-trailTip2.y,
-          trailTip.x-trailTip2.x+180
-        )
-        this.ctx.save()
-        this.ctx.translate(
-          ...canvasPos(trailTip.x,trailTip.y)
-        )
-        this.ctx.rotate(angle)
-        let p=pos*1.2
-        let scale=clamp(p<0.5?interpolate(p*2,0,1,easing.quad.out):interpolate((p*2)-1,1,0,easing.quad.in))
-        scale*=0.7
-        this.ctx.scale(scale,scale)
-        this.ctx.drawImage(icon,
-          -iconCenter.x,
-          -iconCenter.y
-        )
-        this.ctx.restore()
-      }
       let checkForBufferUpdate=()=>{
         let zoomDelta=Math.abs(zoom-this.mapBufferLast.zoom)
         let dx=Math.abs(mapSlice.x-this.mapBufferLast.pos.x)
@@ -771,7 +745,6 @@ const CanvasMap=(props)=>{
 
       drawMap()
       drawTrail()
-      drawIcon()
       drawPoints()
       drawLabels()
       drawImagePointers()

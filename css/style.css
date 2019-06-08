@@ -54,7 +54,7 @@ a:focus {
 
 
 /* Header */
-@keyframes fadeup { from { opacity: 0; transform: translateY(2rem);} to { opacity: 1; transform: translateY(0) }}
+@keyframes fadeup { from { opacity: 0; transform: translateY(2rem);} to { opacity: 1; transform: translateY(0); }}
 
 .header {
 	position: relative;
@@ -127,6 +127,43 @@ a:focus {
 	color: #d1d2d2;
 }
 
+/* Scroll animation */
+@keyframes scroll {
+  0%
+    {opacity: 1;}
+  100%
+    {opacity: 0;
+    transform: translateY(46px);}
+	}
+
+.icon-scroll, .icon-scroll:before {
+	position: absolute;
+  left: 50%;
+}
+.icon-scroll {
+  width: 40px;
+  height: 70px;
+  margin-left: -20px;
+  top: 90%;
+  margin-top: -35px;
+  box-shadow: inset 0 0 0 1px #fff;
+  border-radius: 25px;
+	animation: fadeup 3.5s;
+	animation-timing-function: cubic-bezier(.25,.1,.25,1) ;
+}
+.icon-scroll:before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  margin-left: -4px;
+  top: 8px;
+  border-radius: 4px;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-name: scroll;
+}
+
 .intro {
 	font-family: Baskerville, 'Baskerville Old Face', 'Hoefler Text', Garamond, 'Times New Roman', serif;
 	font-size: 2em;
@@ -140,7 +177,7 @@ a:focus {
 	justify-content: center;
 	-webkit-align-items: center;
 	align-items: center;
-	height: 50vh;
+	height: 110vh;
 	margin: 0 0 3em;
 	padding: 3em;
 	text-align: center;
@@ -149,17 +186,18 @@ a:focus {
 }
 
 .intro blockquote {
-	max-width: 800px;
+	max-width: 900px;
 	margin: 0 auto;
 }
 
 .intro em {
-	font-size: 1.5em;
+	font-size: 1.8em;
 }
 
 .intro span {
 	display: block;
-	padding: 1em 0;
+	font-family: 'youngserif';
+	padding: 1em 0 1em 10em;
 	color: #464b4b;
 }
 
@@ -253,13 +291,25 @@ a:focus {
 	background: #181922;
 }
 
-.content--related .footer {
+.footer {
 	position: relative;
 	z-index: 1000;
 	padding: 10em 2em;
 	text-align: center;
 	color: #fff;
-	background: #181922;
+	background: #16161D;
+}
+
+.col_footer{
+	display: inline-block;
+	padding: 0 3em;
+	text-align:left;
+}
+
+ul{
+	padding-left: 1em;
+	list-style-type: circle;
+	/* list-style-image: url('../img/ferry.svg'); */
 }
 
 .info {
