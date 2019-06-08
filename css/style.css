@@ -288,7 +288,7 @@ a:focus {
 	padding: 10em 2em;
 	text-align: center;
 	color: #fff;
-	background: #181922;
+	background: #2E3440;
 }
 
 .footer {
@@ -296,7 +296,7 @@ a:focus {
 	z-index: 1000;
 	padding: 10em 2em;
 	text-align: center;
-	color: #fff;
+	color: #ECEFF4;
 	background: #16161D;
 }
 
@@ -304,6 +304,15 @@ a:focus {
 	display: inline-block;
 	padding: 0 3em;
 	text-align:left;
+	vertical-align: top;
+}
+
+.col_credits, .col_contact{
+		max-width:20%;
+}
+
+.col_acknowledgements{
+	max-width:35%;
 }
 
 ul{
