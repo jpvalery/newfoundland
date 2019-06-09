@@ -105,7 +105,7 @@ a:focus {
 	font-size: 0.85em;
 	font-weight: 400;
 	display: block;
-	padding: 0.5em 0 2em;
+	padding: 0.5em 0 3em;
 	text-indent: 4px;
 	letter-spacing: 4px;
 	text-transform: uppercase;
@@ -117,24 +117,26 @@ a:focus {
 	padding: 0 0.5em;
 }
 
-.header-title__sub {
-	font-size: 0.55em;
+.header-title__sub, .header-title__authors {
 	font-weight: normal;
 	display: block;
-	max-width: 700px;
+	max-width: 720px;
 	margin: 0 auto;
-	padding: 0.5em 0 1em;
-	color: #d1d2d2;
+	color: #E5E9F0;
+	font-size: 1em;
+	padding-bottom: 0.2em;
+}
+
+.header-title__authors {
+	font-family: odachi;
+}
+
+.header-title__authors a{
+	color: #E5E9F0;
 }
 
 /* Scroll animation */
-@keyframes scroll {
-  0%
-    {opacity: 1;}
-  100%
-    {opacity: 0;
-    transform: translateY(46px);}
-	}
+@keyframes scroll { 0% {opacity: 1;} 100% {opacity: 0; transform: translateY(46px);} }
 
 .icon-scroll, .icon-scroll:before {
 	position: absolute;
@@ -146,7 +148,7 @@ a:focus {
   margin-left: -20px;
   top: 90%;
   margin-top: -35px;
-  box-shadow: inset 0 0 0 1px #fff;
+  box-shadow: inset 0 0 0 1px #ECEFF4;
   border-radius: 25px;
 	animation: fadeup 3.5s;
 	animation-timing-function: cubic-bezier(.25,.1,.25,1) ;
@@ -155,7 +157,7 @@ a:focus {
   content: '';
   width: 8px;
   height: 8px;
-  background: #fff;
+  background: #ECEFF4;
   margin-left: -4px;
   top: 8px;
   border-radius: 4px;
@@ -165,8 +167,8 @@ a:focus {
 }
 
 .intro {
-	font-family: Baskerville, 'Baskerville Old Face', 'Hoefler Text', Garamond, 'Times New Roman', serif;
-	font-size: 2em;
+	font-family: odachi, Baskerville, Garamond, serif;
+	font-size: 2.7em;
 	position: relative;
 	z-index: 1000;
 	display: -webkit-flex;
@@ -186,7 +188,7 @@ a:focus {
 }
 
 .intro blockquote {
-	max-width: 900px;
+	max-width: 1080px;
 	margin: 0 auto;
 }
 
@@ -201,105 +203,11 @@ a:focus {
 	color: #D8DEE9;
 }
 
-/* Demo links */
-
-.demos {
-	margin: 2em 0 0;
-}
-
-.demos a {
-	display: inline-block;
-	margin: 0 0.5em;
-}
-
-.demos a.current-demo {
-	color: #333;
-}
-
-
 /* Content */
 
 .content {
 	padding: 3em 0;
 }
-
-
-/* Related demos & Footer */
-
-.content--related {
-	position: relative;
-	z-index: 1000;
-	padding: 10em 2em;
-	text-align: center;
-	color: #fff;
-	background: #2E3440;
-}
-
-.footer {
-	position: relative;
-	z-index: 1000;
-	padding: 10em 2em;
-	text-align: center;
-	color: #ECEFF4;
-	background: #16161D;
-}
-
-.col_footer {
-	display: inline-block;
-	padding: 0 3em;
-	text-align:left;
-	vertical-align: top;
-}
-
-.col_credits, .col_contact {
-		max-width:20%;
-}
-
-.col_acknowledgements {
-	max-width:35%;
-}
-
-ul {
-	padding-left: 1em;
-	list-style-type: circle;
-	/* list-style-image: url('../img/ferry.svg'); */
-}
-
-li {
-	padding:0.25em 0;
-}
-
-.info {
-	font-size: 1.65em;
-	padding: 0 0 4em;
-}
-
-.media-item {
-	display: inline-block;
-	padding: 1em;
-	vertical-align: top;
-	-webkit-transition: color 0.3s;
-	transition: color 0.3s;
-}
-
-.media-item__img {
-	max-width: 100%;
-	opacity: 0.6;
-	-webkit-transition: opacity 0.3s;
-	transition: opacity 0.3s;
-}
-
-.media-item:hover .media-item__img,
-.media-item:focus .media-item__img {
-	opacity: 1;
-}
-
-.media-item__title {
-	font-size: 1em;
-	margin: 0;
-	padding: 0.5em;
-}
-
 
 /* Story */
 
@@ -365,41 +273,19 @@ li {
 	margin: 0.5em 0 1.5em;
 }
 
-.text section p.text-intro {
-	font-size: 1.3em;
+.text section p.indent {
+	text-indent: 1.2em;
+}
+
+.text section p.quote {
+	font-size: 2em;
 	font-style: italic;
-	line-height: 1.5;
-	margin: 0.5em 0 1.25em;
+	line-height: 1.2;
+	margin: 0.3em 0;
 	text-align: left;
-	color: #9d9c95;
-}
-
-.text blockquote {
-	font-family: youngserif, Baskerville, 'Baskerville Old Face', 'Hoefler Text', Garamond, 'Times New Roman', serif;
-	font-size: 1.4em;
-	line-height: 1.5;
-	position: relative;
-	text-align: left;
-	color: #939997;
-}
-
-.text blockquote::before {
-	content: '\201C';
-	font-size: 2.5em;
-	font-style: italic;
-	line-height: 1;
-	position: absolute;
-	top: -0.15em;
-	right: 100%;
-	margin: 0 0.075em 0 0;
-	color: #f0f3f3;
-}
-
-.text blockquote span {
-	font-family: 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	font-size: 0.5em;
-	white-space: nowrap;
-	color: #cbcece;
+	color: #4C566A;
+	font-family: odachi;
+	text-indent: 0;
 }
 
 .js-section {
@@ -421,6 +307,103 @@ li {
 	max-width: 100%;
 	margin: 10px 0;
 }
+
+/* Shop */
+
+.shop {
+	position: relative;
+	z-index: 1000;
+	padding: 10em 2em;
+	text-align: center;
+	color: #ECEFF4;
+	background: #2E3440;
+}
+
+.info {
+	font-size: 2.4em;
+	font-weight: bold;
+	padding: 0;
+	margin: 0 auto;
+}
+.availability {
+	font-size: 1.2em;
+	padding:0 0 2em 0;
+	margin: 0.2em auto;
+}
+
+.col_shop {
+	display: inline-block;
+	padding: 0 1em;
+	text-align:left;
+	vertical-align: top;
+	max-width: 20%;
+}
+
+.shop-item {
+	display: inline-block;
+	padding: 1em;
+	vertical-align: top;
+	-webkit-transition: color 0.3s;
+	transition: color 0.3s;
+}
+
+.shop-item__img {
+	max-width: 100%;
+	opacity: 0.6;
+	-webkit-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+}
+
+.shop-item:hover .shop-item__img,
+.shop-item:focus .shop-item__img {
+	opacity: 1;
+}
+
+.shop-item__title {
+	font-size: 1.2em;
+	margin: 0;
+	padding: 0.5em;
+	text-align: center;
+}
+
+/* Footer */
+
+.footer {
+	position: relative;
+	z-index: 1000;
+	padding: 10em 2em;
+	text-align: center;
+	color: #ECEFF4;
+	background: #16161D;
+}
+
+.col_footer {
+	display: inline-block;
+	padding: 0 3em;
+	text-align:left;
+	vertical-align: top;
+}
+
+.col_credits, .col_contact {
+		max-width:20%;
+}
+
+.col_acknowledgements {
+	max-width:35%;
+}
+
+ul {
+	padding-left: 1em;
+	list-style-type: circle;
+	/* list-style-image: url('../img/ferry.svg'); */
+}
+
+li {
+	padding:0.25em 0;
+	font-size:0.9em;
+}
+
+/* Responsive */
 
 @media(max-width: 720px) {
 	.header-title {
@@ -446,7 +429,13 @@ li {
 		width: 100%;
 		max-width: none;
 	}
-	.col_footer{
+	.col_footer, .col_shop{
 		max-width: none;
+	}
+	.info {
+		font-size: 1.5em;
+	}
+	.availability {
+		font-size: 1em;
 	}
 }

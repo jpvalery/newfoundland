@@ -23,3 +23,9 @@
     src: url('mosk/Mosk Bold 700.ttf');
     font-weight: 700;
 }
+
+@font-face {
+    font-family: 'odachi';
+    src: url('odachi.woff');
+    font-weight: normal;
+}
