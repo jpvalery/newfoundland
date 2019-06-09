@@ -413,9 +413,12 @@ li {
 	.quote-intro-author {
 		font-size: 1.2em;
 	}
-
+	.footer {
+		text-align: left;
+	}
 	.col_footer {
-		max-width: 30%;
+		min-width: 90%;
+		padding-left: 15%;
 	}
 }
 
@@ -423,7 +426,6 @@ li {
 @media(max-width: 720px) {
 
 	@keyframes scroll { 0% {opacity: 1;} 100% {opacity: 0; transform: translateY(-46px);} }
-
 	.icon-scroll{
 		box-shadow: none;
 	}
@@ -443,9 +445,6 @@ li {
 	}
 	.text section h2 {
 		font-size: 1.85em;
-	}
-	.text blockquote {
-		font-size: 1.45em;
 	}
 	.js-section {
 		width: 100%;
