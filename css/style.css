@@ -352,6 +352,7 @@ a:focus {
 	opacity: 0.6;
 	-webkit-transition: opacity 0.3s;
 	transition: opacity 0.3s;
+	box-shadow: 5px 5px 10px rgba(22, 22, 29, 0.33);
 }
 
 .shop-item:hover .shop-item__img,
