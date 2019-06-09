@@ -168,7 +168,6 @@ a:focus {
 
 .intro {
 	font-family: odachi, Baskerville, Garamond, serif;
-	font-size: 2.7em;
 	position: relative;
 	z-index: 1000;
 	display: -webkit-flex;
@@ -187,20 +186,22 @@ a:focus {
 	background: #16161D;
 }
 
-.intro blockquote {
-	max-width: 1080px;
+.quote-intro {
 	margin: 0 auto;
+	max-width: 100%;
+	font-style: italic;
+	font-size: 2.7em;
 }
 
-.intro em {
-	font-size: 1.8em;
-}
-
-.intro span {
+.quote-intro-author {
 	display: block;
 	font-family: 'youngserif';
-	padding: 2em 0 1em 10em;
+	font-style: normal;
+	position: relative;
+	top: 2em;
+	right: -4em;
 	color: #D8DEE9;
+	font-size: 1.8em;
 }
 
 /* Content */
@@ -336,7 +337,7 @@ a:focus {
 	padding: 0 1em;
 	text-align:left;
 	vertical-align: top;
-	max-width: 20%;
+	max-width: 30%;
 }
 
 .shop-item {
@@ -380,7 +381,7 @@ a:focus {
 
 .col_footer {
 	display: inline-block;
-	padding: 0 3em;
+	padding: 0 2em;
 	text-align:left;
 	vertical-align: top;
 }
@@ -404,16 +405,36 @@ li {
 	font-size:0.9em;
 }
 
-/* Responsive */
+/* Responsive Medium*/
+@media(max-width: 1280px){
+	.quote-intro {
+		font-size:2em;
+	}
+	.quote-intro-author {
+		font-size: 1.2em;
+	}
 
+	.col_footer {
+		max-width: 30%;
+	}
+}
+
+/* Responsive Small */
 @media(max-width: 720px) {
+
+	@keyframes scroll { 0% {opacity: 1;} 100% {opacity: 0; transform: translateY(-46px);} }
+
+	.icon-scroll{
+		box-shadow: none;
+	}
+
 	.header-title {
 		font-size: 1.5em;
 	}
 	.intro {
 		font-size: 1.25em;
-		height: auto;
-		padding: 1em;
+		padding: 2em;
+		min-height: 70%;
 	}
 	.text {
 		font-size: 0.85em;
@@ -430,13 +451,39 @@ li {
 		width: 100%;
 		max-width: none;
 	}
-	.col_footer, .col_shop{
+	.col_shop {
 		max-width: none;
+	}
+	.col_footer {
+		max-width: 70%;
 	}
 	.info {
 		font-size: 1.5em;
 	}
 	.availability {
 		font-size: 1em;
+	}
+	.quote-intro-author{
+		right: 0;
+	}
+}
+
+/* Responsive Small */
+@media(max-width: 360px) {
+	.col_footer {
+		max-width: 100%;
+	}
+	.header-title__main {
+		font-size: 2em;
+		}
+	.header-title__part {
+		font-size: 0.6em;
+	}
+	.header-title__sub, .header-title__authors {
+		font-size: 0.6em;
+	}
+	.header-title__part::before,
+	.header-title__part::after {
+		padding: 0;
 	}
 }
