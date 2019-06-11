@@ -15,7 +15,6 @@
         "declaration-block-trailing-semicolon": "always",
         "declaration-colon-space-before": "never",
         "declaration-colon-space-after": "always",
-        "number-leading-zero": "always",
         "function-url-quotes": "never",
         "font-family-name-quotes": "always-where-required",
         "comment-whitespace-inside": "always",
