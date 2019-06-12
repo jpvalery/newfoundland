@@ -22,17 +22,17 @@ export const easing = {
     out: v => -1 * v * (v - 2),
     inOut: v => {
       v /= 0.5
-    	if (v < 1) return 0.5 * v * v
-    	v--
-    	return -0.5 * (v * (v - 2) - 1)
+      if (v < 1) return 0.5 * v * v
+      v--
+      return -0.5 * (v * (v - 2) - 1)
     }
   },
   cubic: {
     inOut: v => {
-    	v /= 0.5
-    	if (v < 1) return 0.5 * v * v * v
-    	v -= 2
-    	return 0.5 * (v * v * v + 2)
+      v /= 0.5
+      if (v < 1) return 0.5 * v * v * v
+      v -= 2
+      return 0.5 * (v * v * v + 2)
     }
   },
   sine: {
