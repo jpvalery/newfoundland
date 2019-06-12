@@ -1,1 +1,1 @@
-export default (element,className)=>element.classList.contains(className)
+export default (element, className) => element.classList.contains(className)
