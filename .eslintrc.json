@@ -1,6 +1,3 @@
 {
-  "extends": "standard",
-  "rules": {
-    "no-unsafe-finally": "off"
-  }
+  "extends": "standard"
 }
