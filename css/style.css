@@ -51,6 +51,88 @@ a:focus {
 	left: 0;
 }
 
+/* Parallax */
+
+@keyframes fade {
+
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+.parallax {
+	perspective: 100px;
+	height: 100vh;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	right: 0;
+	bottom: 0;
+	margin-left: -1500px;
+	z-index: 6000;
+	animation: fade 5s;
+	animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.parallax_layer {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.parallax_layer img {
+	display: block;
+	position: absolute;
+	bottom: 0;
+}
+
+.parallax_cover {
+	background: #16161D;
+	display: block;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	height: 100vh;
+	margin-left: 5%;
+}
+
+.parallax_layer_0 {
+	transform: translateZ(-300px) scale(4);
+}
+
+.parallax_layer_1 {
+	transform: translateZ(-250px) scale(3.5);
+}
+
+.parallax_layer_2 {
+	transform: translateZ(-200px) scale(3);
+}
+
+.parallax_layer_3 {
+	transform: translateZ(-150px) scale(2.5);
+}
+
+.parallax_layer_4 {
+	transform: translateZ(-100px) scale(2);
+}
+
+.parallax_layer_5 {
+	transform: translateZ(-50px) scale(1.5);
+}
+
+.parallax_layer_6 {
+	transform: translateZ(0) scale(1);
+}
+
 /* Header */
 
 @keyframes fadeup {
@@ -146,50 +228,6 @@ a:focus {
 	color: #E5E9F0;
 }
 
-/* Scroll animation */
-@keyframes scroll {
-
-	0% {
-		opacity: 1;
-	}
-
-	100% {
-		opacity: 0;
-		transform: translateY(46px);
-	}
-}
-
-.icon-scroll,
-.icon-scroll::before {
-	position: absolute;
-	left: 50%;
-}
-
-.icon-scroll {
-	width: 40px;
-	height: 70px;
-	margin-left: -20px;
-	top: 90%;
-	margin-top: -35px;
-	box-shadow: inset 0 0 0 1px #ECEFF4;
-	border-radius: 25px;
-	animation: fadeup 3.5s;
-	animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-.icon-scroll::before {
-	content: "";
-	width: 8px;
-	height: 8px;
-	background: #ECEFF4;
-	margin-left: -4px;
-	top: 8px;
-	border-radius: 4px;
-	animation-duration: 1.5s;
-	animation-iteration-count: infinite;
-	animation-name: scroll;
-}
-
 .intro {
 	font-family: odachi, Baskerville, Garamond, serif;
 	position: relative;
@@ -202,12 +240,10 @@ a:focus {
 	justify-content: center;
 	-webkit-align-items: center;
 	align-items: center;
-	height: 110vh;
-	margin: 0 0 3em;
+	height: 100vh;
 	padding: 3em;
 	text-align: center;
 	color: #ECEFF4;
-	background: #16161D;
 }
 
 .quote-intro {
