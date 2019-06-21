@@ -67,42 +67,45 @@ a:focus {
 .parallax {
 	perspective: 100px;
 	height: 100vh;
+	width: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
 	position: absolute;
 	top: 0;
-	left: 50%;
+	left: 0;
 	right: 0;
 	bottom: 0;
-	margin-left: -1500px;
 	z-index: 6000;
 	animation: fade 5s;
 	animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .parallax_layer {
+	margin: 0 auto;
 	position: absolute;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
+	width: 100%;
 }
 
 .parallax_layer img {
 	display: block;
 	position: absolute;
 	bottom: 0;
+	max-width: 100%;
 }
 
 .parallax_cover {
 	background: #16161D;
+	transform: translateZ(0) scale(1);
 	display: block;
 	position: absolute;
 	top: 100%;
 	left: 0;
 	right: 0;
 	height: 100vh;
-	margin-left: 5%;
 }
 
 .parallax_layer_0 {
@@ -151,16 +154,11 @@ a:focus {
 .header {
 	position: relative;
 	z-index: 1000;
-	display: -webkit-flex;
 	display: flex;
-	-webkit-flex-direction: column;
 	flex-direction: column;
-	-webkit-justify-content: center;
 	justify-content: center;
-	-webkit-align-items: center;
 	align-items: center;
 	height: 100vh;
-	min-height: 600px;
 	padding: 2em 1em 4em;
 	text-align: center;
 	color: #ECEFF4;
@@ -168,18 +166,9 @@ a:focus {
 	background-size: cover;
 }
 
-.header::before {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(24, 25, 34, 0.5);
-}
-
 .header-title {
 	position: relative;
+	margin-top: -25%;
 	animation: fadeup 3.5s;
 	animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
@@ -234,11 +223,8 @@ a:focus {
 	z-index: 1000;
 	display: -webkit-flex;
 	display: flex;
-	-webkit-flex-direction: column;
 	flex-direction: column;
-	-webkit-justify-content: center;
 	justify-content: center;
-	-webkit-align-items: center;
 	align-items: center;
 	height: 100vh;
 	padding: 3em;
@@ -275,7 +261,7 @@ a:focus {
 .text {
 	position: relative;
 	z-index: 2000;
-	padding: 5em 3em;
+	padding: 10em 3em;
 }
 
 .text section {
@@ -472,6 +458,11 @@ li {
 
 @media (max-width: 1280px) {
 
+	.header-title {
+		position: relative;
+		margin-top: 0;
+	}
+
 	.quote-intro {
 		font-size: 2em;
 	}
@@ -492,21 +483,6 @@ li {
 
 /* Responsive Small */
 @media (max-width: 720px) {
-	@keyframes scroll {
-
-		0% {
-			opacity: 1;
-		}
-
-		100% {
-			opacity: 0;
-			transform: translateY(-46px);
-		}
-	}
-
-	.icon-scroll {
-		box-shadow: none;
-	}
 
 	.header-title {
 		font-size: 1.5em;
@@ -578,5 +554,31 @@ li {
 	.header-title__part::before,
 	.header-title__part::after {
 		padding: 0;
+	}
+}
+
+/* Responsive Parallax */
+
+@media only screen and (max-width: 2000px) {
+
+	.parallax_layer {
+		left: -20%;
+		width: 150%;
+	}
+}
+
+@media only screen and (max-width: 900px) {
+
+	.parallax_layer {
+		left: -50%;
+		width: 200%;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+
+	.parallax_layer {
+		left: -100%;
+		width: 300%;
 	}
 }
