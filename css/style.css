@@ -168,7 +168,6 @@ a:focus {
 
 .header-title {
 	position: relative;
-	margin-top: -25%;
 	animation: fadeup 3.5s;
 	animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
