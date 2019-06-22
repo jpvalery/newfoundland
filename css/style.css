@@ -51,6 +51,91 @@ a:focus {
 	left: 0;
 }
 
+/* Parallax */
+
+@keyframes fade {
+
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+.parallax {
+	perspective: 100px;
+	height: 100vh;
+	width: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 6000;
+	animation: fade 5s;
+	animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.parallax_layer {
+	margin: 0 auto;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}
+
+.parallax_layer img {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	max-width: 100%;
+}
+
+.parallax_cover {
+	background: #16161D;
+	transform: translateZ(0) scale(1);
+	display: block;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	height: 100vh;
+}
+
+.parallax_layer_0 {
+	transform: translateZ(-300px) scale(4);
+}
+
+.parallax_layer_1 {
+	transform: translateZ(-250px) scale(3.5);
+}
+
+.parallax_layer_2 {
+	transform: translateZ(-200px) scale(3);
+}
+
+.parallax_layer_3 {
+	transform: translateZ(-150px) scale(2.5);
+}
+
+.parallax_layer_4 {
+	transform: translateZ(-100px) scale(2);
+}
+
+.parallax_layer_5 {
+	transform: translateZ(-50px) scale(1.5);
+}
+
+.parallax_layer_6 {
+	transform: translateZ(0) scale(1);
+}
+
 /* Header */
 
 @keyframes fadeup {
@@ -69,16 +154,11 @@ a:focus {
 .header {
 	position: relative;
 	z-index: 1000;
-	display: -webkit-flex;
 	display: flex;
-	-webkit-flex-direction: column;
 	flex-direction: column;
-	-webkit-justify-content: center;
 	justify-content: center;
-	-webkit-align-items: center;
 	align-items: center;
 	height: 100vh;
-	min-height: 600px;
 	padding: 2em 1em 4em;
 	text-align: center;
 	color: #ECEFF4;
@@ -86,25 +166,16 @@ a:focus {
 	background-size: cover;
 }
 
-.header::before {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(24, 25, 34, 0.5);
-}
-
 .header-title {
 	position: relative;
+	margin-top: -15%;
 	animation: fadeup 3.5s;
 	animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .header-title__main {
 	font-family: wanderlust, Baskerville, serif;
-	font-size: 3em;
+	font-size: 2.7em;
 	font-weight: 700;
 	line-height: 1;
 	margin: 0 0 0.15em 0;
@@ -115,7 +186,7 @@ a:focus {
 	font-size: 0.85em;
 	font-weight: 400;
 	display: block;
-	padding: 0.5em 0 3em;
+	padding: 0.5em 0 1.8em;
 	text-indent: 4px;
 	letter-spacing: 4px;
 	text-transform: uppercase;
@@ -146,68 +217,19 @@ a:focus {
 	color: #E5E9F0;
 }
 
-/* Scroll animation */
-@keyframes scroll {
-
-	0% {
-		opacity: 1;
-	}
-
-	100% {
-		opacity: 0;
-		transform: translateY(46px);
-	}
-}
-
-.icon-scroll,
-.icon-scroll::before {
-	position: absolute;
-	left: 50%;
-}
-
-.icon-scroll {
-	width: 40px;
-	height: 70px;
-	margin-left: -20px;
-	top: 90%;
-	margin-top: -35px;
-	box-shadow: inset 0 0 0 1px #ECEFF4;
-	border-radius: 25px;
-	animation: fadeup 3.5s;
-	animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-.icon-scroll::before {
-	content: "";
-	width: 8px;
-	height: 8px;
-	background: #ECEFF4;
-	margin-left: -4px;
-	top: 8px;
-	border-radius: 4px;
-	animation-duration: 1.5s;
-	animation-iteration-count: infinite;
-	animation-name: scroll;
-}
-
 .intro {
 	font-family: odachi, Baskerville, Garamond, serif;
 	position: relative;
 	z-index: 1000;
 	display: -webkit-flex;
 	display: flex;
-	-webkit-flex-direction: column;
 	flex-direction: column;
-	-webkit-justify-content: center;
 	justify-content: center;
-	-webkit-align-items: center;
 	align-items: center;
-	height: 110vh;
-	margin: 0 0 3em;
+	height: 100vh;
 	padding: 3em;
 	text-align: center;
 	color: #ECEFF4;
-	background: #16161D;
 }
 
 .quote-intro {
@@ -239,7 +261,7 @@ a:focus {
 .text {
 	position: relative;
 	z-index: 2000;
-	padding: 5em 3em;
+	padding: 10em 3em;
 }
 
 .text section {
@@ -436,6 +458,11 @@ li {
 
 @media (max-width: 1280px) {
 
+	.header-title {
+		position: relative;
+		margin-top: 0;
+	}
+
 	.quote-intro {
 		font-size: 2em;
 	}
@@ -456,21 +483,6 @@ li {
 
 /* Responsive Small */
 @media (max-width: 720px) {
-	@keyframes scroll {
-
-		0% {
-			opacity: 1;
-		}
-
-		100% {
-			opacity: 0;
-			transform: translateY(-46px);
-		}
-	}
-
-	.icon-scroll {
-		box-shadow: none;
-	}
 
 	.header-title {
 		font-size: 1.5em;
@@ -542,5 +554,31 @@ li {
 	.header-title__part::before,
 	.header-title__part::after {
 		padding: 0;
+	}
+}
+
+/* Responsive Parallax */
+
+@media only screen and (max-width: 2000px) {
+
+	.parallax_layer {
+		left: -20%;
+		width: 150%;
+	}
+}
+
+@media only screen and (max-width: 900px) {
+
+	.parallax_layer {
+		left: -50%;
+		width: 200%;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+
+	.parallax_layer {
+		left: -100%;
+		width: 300%;
 	}
 }
