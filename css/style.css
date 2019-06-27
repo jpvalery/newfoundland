@@ -88,6 +88,8 @@ a:focus {
 	bottom: 0;
 	left: 0;
 	width: 100%;
+	background-position: bottom center;
+	background-repeat: no-repeat;
 }
 
 .parallax_layer img {
@@ -110,30 +112,37 @@ a:focus {
 
 .parallax_layer_0 {
 	transform: translateZ(-300px) scale(4);
+	background-image: url(../img/parallax/layer_0.png);
 }
 
 .parallax_layer_1 {
 	transform: translateZ(-250px) scale(3.5);
+	background-image: url(../img/parallax/layer_1.png);
 }
 
 .parallax_layer_2 {
 	transform: translateZ(-200px) scale(3);
+	background-image: url(../img/parallax/layer_2.png);
 }
 
 .parallax_layer_3 {
 	transform: translateZ(-150px) scale(2.5);
+	background-image: url(../img/parallax/layer_3.png);
 }
 
 .parallax_layer_4 {
 	transform: translateZ(-100px) scale(2);
+	background-image: url(../img/parallax/layer_4.png);
 }
 
 .parallax_layer_5 {
 	transform: translateZ(-50px) scale(1.5);
+	background-image: url(../img/parallax/layer_5.png);
 }
 
 .parallax_layer_6 {
 	transform: translateZ(0) scale(1);
+	background-image: url(../img/parallax/layer_6.png);
 }
 
 /* Header */
@@ -219,7 +228,6 @@ a:focus {
 
 .intro {
 	font-family: odachi, Baskerville, Garamond, serif;
-	position: relative;
 	z-index: 1000;
 	display: -webkit-flex;
 	display: flex;
