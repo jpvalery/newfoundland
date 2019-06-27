@@ -226,7 +226,7 @@ a:focus {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	min-height: 100vh;
+	height: 100%;
 	padding: 3em;
 	text-align: center;
 	color: #ECEFF4;
