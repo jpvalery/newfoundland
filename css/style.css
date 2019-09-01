@@ -219,10 +219,23 @@ a:focus {
 
 .intro {
 	font-family: odachi, Baskerville, Garamond, serif;
-	position: relative;
 	z-index: 1000;
 	display: -webkit-flex;
 	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	padding: 3em;
+	text-align: center;
+	color: #ECEFF4;
+}
+
+.intronoparallax {
+	display: none;
+	font-family: odachi, Baskerville, Garamond, serif;
+	background: #16161D;
+	z-index: 1000;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
@@ -457,6 +470,15 @@ li {
 /* Responsive Medium */
 
 @media (max-width: 1280px) {
+
+	.parallax {
+		display: none;
+	}
+
+	.intronoparallax {
+		display: -webkit-flex;
+		display: flex;
+	}
 
 	.header-title {
 		position: relative;
