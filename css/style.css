@@ -168,6 +168,7 @@ a:focus {
 
 .header-title {
 	position: relative;
+	text-transform: uppercase;
 	margin-top: -15%;
 	animation: fadeup 3.5s;
 	animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -337,7 +338,7 @@ a:focus {
 }
 
 .text figure img {
-	max-width: 100%;
+	width: 100%;
 }
 
 .text figcaption {
@@ -368,9 +369,9 @@ a:focus {
 	text-indent: 0;
 }
 
-/* Shop */
+/* endscreen */
 
-.shop {
+.endscreen {
 	position: relative;
 	z-index: 1000;
 	padding: 10em 2em;
@@ -390,42 +391,6 @@ a:focus {
 	font-size: 1.2em;
 	padding: 0 0 2em 0;
 	margin: 0.2em auto;
-}
-
-.col_shop {
-	display: inline-block;
-	padding: 0 1em;
-	text-align: left;
-	vertical-align: top;
-	max-width: 30%;
-}
-
-.shop-item {
-	display: inline-block;
-	padding: 1em;
-	vertical-align: top;
-	-webkit-transition: color 0.3s;
-	transition: color 0.3s;
-}
-
-.shop-item__img {
-	max-width: 100%;
-	opacity: 0.6;
-	-webkit-transition: opacity 0.3s;
-	transition: opacity 0.3s;
-	box-shadow: 5px 5px 10px rgba(22, 22, 29, 0.33);
-}
-
-.shop-item:hover .shop-item__img,
-.shop-item:focus .shop-item__img {
-	opacity: 1;
-}
-
-.shop-item__title {
-	font-size: 1.2em;
-	margin: 0;
-	padding: 0.5em;
-	text-align: center;
 }
 
 /* Footer */
