@@ -4,8 +4,10 @@ An interactive web experience telling the story of our adventures in Newfoundlan
 
 ![Parallax Intro](https://github.com/jpvalery/newfoundland/blob/master/docs/intro-parallax.gif?raw=true)
 ![Scrolling Map](https://github.com/jpvalery/newfoundland/blob/master/docs/scrolling-map.gif?raw=true)
+
 ![Lighthouse Score](https://github.com/jpvalery/newfoundland/blob/master/docs/lighthouse.png?raw=true)
 
+⚠️ While the code of the website is under the MIT License, the content of the website including text and photos are under copyright.
 
 #### Credits
 
