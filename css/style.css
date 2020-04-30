@@ -387,10 +387,20 @@ a:focus {
 	margin: 0 auto;
 }
 
-.availability {
-	font-size: 1.2em;
-	padding: 0 0 2em 0;
-	margin: 0.2em auto;
+/* Transitions */
+
+.transition-footer {
+	background-image: url("../img/pattern.png");
+	height: 92px;
+	margin-bottom: -46px;
+	z-index: 99999;
+	position: relative;
+}
+
+.transition-header {
+	background-image: url("../img/pattern-top.png");
+	height: 91px;
+	position: relative;
 }
 
 /* Footer */
