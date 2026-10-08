@@ -1,3 +1,4 @@
+import { gsap } from 'gsap'
 import get from './ajax'
 import Component from './component'
 import createCanvas from './create-canvas'
@@ -91,7 +92,6 @@ const CanvasMap = (props) => {
 
     lastScroll: 0,
     scrollAnim: null,
-    scrollFrame: null,
     sectionsFrame: null,
 
     initialState() {
@@ -321,23 +321,19 @@ const CanvasMap = (props) => {
       this.lastScroll = scroll
       this.animateScroll(scroll, d * 0.2)
     },
-    // Eases the map toward the scroll position with a quadratic ease-out (the
-    // GSAP default this code used before). A new scroll event cancels the
-    // running animation and starts from the current value, so animations of
-    // quick scroll events never run on top of each other.
+    // GSAP 1 (TweenLite) overwrote earlier tweens by default and GSAP 3 does
+    // not. Without overwrite, the tweens of quick scroll events run on top of
+    // each other, and the map can stop at an old scroll position.
+    // Keep GSAP here: a plain requestAnimationFrame loop restarts on every
+    // scroll event and does not move while the page scrolls smoothly.
     animateScroll(target, duration) {
-      cancelAnimationFrame(this.scrollFrame)
-      const from = this.scrollAnim.value
-      const start = performance.now()
-      const step = (now) => {
-        const p = duration > 0 ? clamp((now - start) / (duration * 1000)) : 1
-        this.scrollAnim.value =
-          p === 1 ? target : from + (target - from) * easing.quad.out(p)
-        this.updateScroll(this.scrollAnim.value)
-        if (p < 1) this.scrollFrame = requestAnimationFrame(step)
-      }
-      if (duration > 0) this.scrollFrame = requestAnimationFrame(step)
-      else step(start)
+      gsap.to(this.scrollAnim, {
+        duration,
+        value: target,
+        overwrite: 'auto',
+        onUpdate: () => this.updateScroll(this.scrollAnim.value),
+        onComplete: () => this.updateScroll(this.scrollAnim.value),
+      })
     },
 
     updateScroll(scroll) {
