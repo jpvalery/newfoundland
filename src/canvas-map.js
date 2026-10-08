@@ -1,4 +1,3 @@
-import { gsap } from 'gsap'
 import get from './ajax'
 import Component from './component'
 import createCanvas from './create-canvas'
@@ -92,6 +91,8 @@ const CanvasMap = (props) => {
 
     lastScroll: 0,
     scrollAnim: null,
+    scrollFrame: null,
+    sectionsFrame: null,
 
     initialState() {
       return {
@@ -152,6 +153,8 @@ const CanvasMap = (props) => {
       this.canvas.style.position = 'absolute'
       this.canvas.style.top = 0
       this.canvas.style.left = 0
+      // Decoration only: the text tells the same story.
+      this.canvas.setAttribute('aria-hidden', 'true')
       this.ctx = this.canvas.getContext('2d', { alpha: false })
       this.ctx.fillStyle = '#fff'
       this.ctx.fillRect(0, 0, this.state.width, this.state.height)
@@ -159,110 +162,117 @@ const CanvasMap = (props) => {
 
       this.calculateSections()
       for (const img of this.props.textContainer.querySelectorAll('img')) {
-        img.addEventListener('load', () => {
-          this.calculateSections()
-          this.renderMap()
-        })
+        img.addEventListener('load', () => this.scheduleSectionsUpdate())
       }
 
       this.scrollAnim = { value: 0 }
 
-      get(this.props.mapSrc).then((response) => {
-        this.mapSVG = Array.from(
-          new DOMParser().parseFromString(response, 'image/svg+xml').childNodes
-        ).find((node) => node.tagName?.toLowerCase() === 'svg')
-
-        this.cameraPath = this.mapSVG.querySelector('#camera-path path')
-        this.trailPath = this.mapSVG.querySelector('#trail-path path')
-
-        this.points = Array.from(
-          this.mapSVG.querySelectorAll('#points circle'),
-          (point) => {
-            const x = Number.parseFloat(point.getAttribute('cx'))
-            const y = Number.parseFloat(point.getAttribute('cy'))
-            return {
-              x,
-              y,
-              length: Path.getLengthAtPoint(this.trailPath, { x, y }),
-              label: (point.getAttribute('id') || '').replace(/_/g, ' '),
-              color: point.getAttribute('fill') || 'black',
-              radius: Number.parseFloat(point.getAttribute('r')),
-            }
-          }
-        ).sort((a, b) => a.length - b.length)
-
-        this.cameraSubdivisions = Path.subdividePath(
-          this.cameraPath,
-          this.cameraSubdivisionSize,
-          true
-        )
-        this.cameraLength = Path.getLength(this.cameraPath)
-        this.cameraBreakpoints = this.setupBreakpoints(this.cameraPath)
-
-        this.trailSubdivisions = Path.subdividePath(
-          this.trailPath,
-          this.trailSubdivisionSize,
-          true
-        )
-        this.trailBreakpoints = this.setupBreakpoints(this.trailPath)
-        this.trailLength = Path.getLength(this.trailPath)
-
-        loadImage(this.props.mapSrc).then((img) => {
-          this.mapWidth = img.width
-          this.mapHeight = img.height
-          // Fallback for browsers that report no size for the SVG (#27)
-          if (this.mapHeight === 0) {
-            this.mapWidth = 2040
-            this.mapHeight = 1178
-          }
-          this.map = Array.from({ length: this.mapScales }, (_, i) => {
-            const scale =
-              1 + ((this.mapMaxScale - 1) / (this.mapScales - 1)) * i
-
-            const map = createCanvas(
-              this.mapWidth * scale,
-              this.mapHeight * scale
-            )
-            const mapCtx = map.getContext('2d', { alpha: false })
-            mapCtx.fillStyle = 'white'
-            mapCtx.fillRect(0, 0, this.mapWidth * scale, this.mapHeight * scale)
-            mapCtx.drawImage(
-              img,
-              0,
-              0,
-              this.mapWidth * scale,
-              this.mapHeight * scale
-            )
-            return { map, scale }
-          })
-
-          this.mapBuffer = createCanvas(1, 1)
-          this.mapBufferCtx = this.mapBuffer.getContext('2d', { alpha: false })
-          this.updateMapBufferSize()
-          this.mapBufferCtx.fillStyle = 'white'
-          this.mapBufferCtx.fillRect(
-            0,
-            0,
-            this.mapBufferSize.x,
-            this.mapBufferSize.y
-          )
-          this.mapBufferOffset = { x: 0, y: 0 }
-          this.mapBufferScale = this.mapScale
-
-          this.ready = true
-          document.addEventListener('scroll', this.onScroll.bind(this))
-          this.onScroll()
-        })
-      })
+      this.loadMap()
       window.addEventListener('resize', this.onResize.bind(this))
     },
-    setupBreakpoints(path) {
-      return this.points.flatMap((point, i) => {
-        const length = Path.getLengthAtPoint(path, point)
-        return this.sections[i].getAttribute('data-stay') === 'true'
-          ? [length, length]
-          : [length]
-      })
+    // Reads the paths and points from the SVG, then draws the map at each
+    // scale. The path measures are slow, so this yields to the browser often.
+    async loadMap() {
+      const response = await get(this.props.mapSrc)
+      this.mapSVG = Array.from(
+        new DOMParser().parseFromString(response, 'image/svg+xml').childNodes
+      ).find((node) => node.tagName?.toLowerCase() === 'svg')
+
+      this.cameraPath = this.mapSVG.querySelector('#camera-path path')
+      this.trailPath = this.mapSVG.querySelector('#trail-path path')
+
+      const points = []
+      for (const point of this.mapSVG.querySelectorAll('#points circle')) {
+        const x = Number.parseFloat(point.getAttribute('cx'))
+        const y = Number.parseFloat(point.getAttribute('cy'))
+        points.push({
+          x,
+          y,
+          length: await Path.getLengthAtPoint(this.trailPath, { x, y }),
+          label: (point.getAttribute('id') || '').replace(/_/g, ' '),
+          color: point.getAttribute('fill') || 'black',
+          radius: Number.parseFloat(point.getAttribute('r')),
+        })
+      }
+      this.points = points.sort((a, b) => a.length - b.length)
+
+      this.cameraSubdivisions = await Path.subdividePath(
+        this.cameraPath,
+        this.cameraSubdivisionSize,
+        true
+      )
+      this.cameraLength = Path.getLength(this.cameraPath)
+      this.cameraBreakpoints = await this.setupBreakpoints((point) =>
+        Path.getLengthAtPoint(this.cameraPath, point)
+      )
+
+      this.trailSubdivisions = await Path.subdividePath(
+        this.trailPath,
+        this.trailSubdivisionSize,
+        true
+      )
+      // point.length is getLengthAtPoint(this.trailPath, point), from above.
+      this.trailBreakpoints = await this.setupBreakpoints(
+        (point) => point.length
+      )
+      this.trailLength = Path.getLength(this.trailPath)
+
+      const img = await loadImage(this.props.mapSrc)
+      this.mapWidth = img.width
+      this.mapHeight = img.height
+      // Fallback for browsers that report no size for the SVG (#27)
+      if (this.mapHeight === 0) {
+        this.mapWidth = 2040
+        this.mapHeight = 1178
+      }
+      // Drawing the SVG at 2.5x is slow on phones: yield between the scales.
+      this.map = []
+      for (let i = 0; i < this.mapScales; i++) {
+        await Path.yieldToMain()
+        const scale = 1 + ((this.mapMaxScale - 1) / (this.mapScales - 1)) * i
+
+        const map = createCanvas(this.mapWidth * scale, this.mapHeight * scale)
+        const mapCtx = map.getContext('2d', { alpha: false })
+        mapCtx.fillStyle = 'white'
+        mapCtx.fillRect(0, 0, this.mapWidth * scale, this.mapHeight * scale)
+        mapCtx.drawImage(
+          img,
+          0,
+          0,
+          this.mapWidth * scale,
+          this.mapHeight * scale
+        )
+        this.map.push({ map, scale })
+      }
+      await Path.yieldToMain()
+
+      this.mapBuffer = createCanvas(1, 1)
+      this.mapBufferCtx = this.mapBuffer.getContext('2d', { alpha: false })
+      this.updateMapBufferSize()
+      this.mapBufferCtx.fillStyle = 'white'
+      this.mapBufferCtx.fillRect(
+        0,
+        0,
+        this.mapBufferSize.x,
+        this.mapBufferSize.y
+      )
+      this.mapBufferOffset = { x: 0, y: 0 }
+      this.mapBufferScale = this.mapScale
+
+      this.ready = true
+      document.addEventListener('scroll', this.onScroll.bind(this))
+      this.onScroll()
+    },
+    async setupBreakpoints(getLength) {
+      const breakpoints = []
+      for (const [i, point] of this.points.entries()) {
+        const length = await getLength(point)
+        breakpoints.push(length)
+        if (this.sections[i].getAttribute('data-stay') === 'true') {
+          breakpoints.push(length)
+        }
+      }
+      return breakpoints
     },
     getMapBufferSize() {
       return {
@@ -280,6 +290,15 @@ const CanvasMap = (props) => {
         zoom: -1,
         pos: { x: -1, y: -1 },
       }
+    },
+    // Many images can load in the same frame: measure the sections once.
+    scheduleSectionsUpdate() {
+      if (this.sectionsFrame != null) return
+      this.sectionsFrame = requestAnimationFrame(() => {
+        this.sectionsFrame = null
+        this.calculateSections()
+        this.renderMap()
+      })
     },
     calculateSections() {
       const scroll = getScroll()
@@ -300,20 +319,25 @@ const CanvasMap = (props) => {
       const scroll = getScroll()
       const d = Math.sqrt(clamp(Math.abs(scroll - this.lastScroll) / 10))
       this.lastScroll = scroll
-      gsap.to(this.scrollAnim, {
-        duration: d * 0.2,
-        value: scroll,
-        // GSAP 1 (TweenLite) did this by default and GSAP 3 does not. Without
-        // it, the tweens of quick scroll events run on top of each other, and
-        // the map can stop at an old scroll position.
-        overwrite: 'auto',
-        onUpdate: () => {
-          this.updateScroll(this.scrollAnim.value)
-        },
-        onComplete: () => {
-          this.updateScroll(this.scrollAnim.value)
-        },
-      })
+      this.animateScroll(scroll, d * 0.2)
+    },
+    // Eases the map toward the scroll position with a quadratic ease-out (the
+    // GSAP default this code used before). A new scroll event cancels the
+    // running animation and starts from the current value, so animations of
+    // quick scroll events never run on top of each other.
+    animateScroll(target, duration) {
+      cancelAnimationFrame(this.scrollFrame)
+      const from = this.scrollAnim.value
+      const start = performance.now()
+      const step = (now) => {
+        const p = duration > 0 ? clamp((now - start) / (duration * 1000)) : 1
+        this.scrollAnim.value =
+          p === 1 ? target : from + (target - from) * easing.quad.out(p)
+        this.updateScroll(this.scrollAnim.value)
+        if (p < 1) this.scrollFrame = requestAnimationFrame(step)
+      }
+      if (duration > 0) this.scrollFrame = requestAnimationFrame(step)
+      else step(start)
     },
 
     updateScroll(scroll) {

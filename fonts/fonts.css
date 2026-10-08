@@ -7,7 +7,7 @@
 
 @font-face {
 	font-family: "wanderlust";
-	src: url("Wanderlust.ttf");
+	src: url("Wanderlust.woff2") format("woff2");
 	font-weight: normal;
 	font-style: normal;
 }

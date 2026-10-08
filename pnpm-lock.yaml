@@ -11,9 +11,6 @@ importers:
       glightbox:
         specifier: 3.3.1
         version: 3.3.1
-      gsap:
-        specifier: 3.15.0
-        version: 3.15.0
       lazysizes:
         specifier: 5.3.2
         version: 5.3.2
@@ -248,9 +245,6 @@ packages:
   glightbox@3.3.1:
     resolution: {integrity: sha512-nXoKfJRnQTDaAFAw5799hjpfAAHx5aLvOLG0SIGudeMCwtHgO3P2/avNYapJ+SL4UEZxO2YNBPtq6pzMhSx42g==}
 
-  gsap@3.15.0:
-    resolution: {integrity: sha512-dMW4CWBTUK1AEEDeZc1g4xpPGIrSf9fJF960qbTZmN/QwZIWY5wgliS6JWl9/25fpTGJrMRtSjGtOmPnfjZB+A==}
-
   lazysizes@5.3.2:
     resolution: {integrity: sha512-22UzWP+Vedi/sMeOr8O7FWimRVtiNJV2HCa+V8+peZOw6QbswN9k58VUhd7i6iK5bw5QkYrF01LJbeJe0PV8jg==}
 
@@ -399,7 +393,5 @@ snapshots:
       '@esbuild/win32-x64': 0.28.2
 
   glightbox@3.3.1: {}
-
-  gsap@3.15.0: {}
 
   lazysizes@5.3.2: {}

@@ -14,17 +14,32 @@ export function getPointAtPercent(path, percent) {
   }
   return getPointAtLength(path, percent * getLength(path))
 }
+// Gives the main thread back to the browser, so input and paint can happen.
+// The fallback uses a message, because chained setTimeout(0) calls get a 4ms
+// minimum delay.
+const channel = new MessageChannel()
+const pending = []
+channel.port1.onmessage = () => pending.shift()()
+export const yieldToMain = () =>
+  globalThis.scheduler?.yield
+    ? globalThis.scheduler.yield()
+    : new Promise((resolve) => {
+        pending.push(resolve)
+        channel.port2.postMessage(null)
+      })
+
 function distance(pointA, pointB) {
   const d = sub(pointA, pointB)
   return Math.sqrt(d.x * d.x + d.y * d.y)
 }
-export function getLengthAtPoint(
+export async function getLengthAtPoint(
   path,
   point,
   subdivisionsPerIteration = 10,
   iterations = 5
 ) {
-  const iterate = (lower, upper, iterationsLeft) => {
+  const iterate = async (lower, upper, iterationsLeft) => {
+    await yieldToMain()
     const step = (upper - lower) / (subdivisionsPerIteration - 1)
 
     const closest = Array.from({ length: subdivisionsPerIteration }, (_, i) => {
@@ -45,13 +60,28 @@ export function getLengthAtPoint(
 
   return iterate(0, getLength(path), iterations)
 }
-export function subdividePath(path, subdivisions, subdivideByDistance = false) {
+// Each getPointAtLength() call measures the path again from its start, so a
+// 1px subdivision of the trail takes about 0.5s on a fast laptop (more on a
+// phone). The loop yields every few milliseconds to keep the page responsive.
+const TIME_SLICE_MS = 6
+export async function subdividePath(
+  path,
+  subdivisions,
+  subdivideByDistance = false
+) {
   const length = getLength(path)
 
   if (subdivideByDistance) subdivisions = length / subdivisions
 
   const subdivisionLength = length / subdivisions
-  return Array.from({ length: Math.floor(subdivisions) }, (_, i) =>
-    getPointAtLength(path, i * subdivisionLength)
-  )
+  const points = new Array(Math.floor(subdivisions))
+  let deadline = performance.now() + TIME_SLICE_MS
+  for (let i = 0; i < points.length; i++) {
+    points[i] = getPointAtLength(path, i * subdivisionLength)
+    if (performance.now() > deadline) {
+      await yieldToMain()
+      deadline = performance.now() + TIME_SLICE_MS
+    }
+  }
+  return points
 }

@@ -26,7 +26,7 @@ Use `pnpm dev` to view the site locally. The map does not load when you open `in
 #### Credits
 
 *   Photos & Texts by [Jp Valery](https://jpvalery.photo) & Aurélie Boucher
-*   SVG [Map of Newfoundland](http://www.freevectormaps.com/canada/newfoundland-and-labrador/CA-NL-EPS-02-4001?ref=atr "Map Newfoundland") by FreeVectorMaps
+*   SVG [Map of Newfoundland](https://freevectormaps.com/canada/newfoundland-and-labrador/CA-NL-EPS-02-4001?ref=atr "Map Newfoundland") by FreeVectorMaps
 *   Puffin favicon by [Freepik](https://www.freepik.com/ "Freepik")
 *   Ferry icon by [Matin Mahirli](https://www.iconfinder.com/mathme "Matin Mahirli")
 *   Puffins and Iceberg icons on the map from O'Briens Boat Tours

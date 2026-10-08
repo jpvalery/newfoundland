@@ -15,7 +15,12 @@ body {
 a {
 	text-decoration: none;
 	color: #88c0d0;
-	outline: none;
+}
+
+/* Visible focus for keyboard users only (a mouse click does not show it) */
+a:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
 }
 
 a:hover,
@@ -75,6 +80,7 @@ a:focus {
 	position: absolute;
 	bottom: 0;
 	max-width: 100%;
+	height: auto;
 }
 
 .parallax_cover {
@@ -302,6 +308,7 @@ a:focus {
 
 .text figure img {
 	width: 100%;
+	height: auto;
 }
 
 .text figcaption {
@@ -501,5 +508,22 @@ li {
 	.parallax_layer {
 		left: -100%;
 		width: 300%;
+	}
+}
+
+/* Reduced motion: static intro instead of the 3D parallax, no fade-ins */
+
+@media (prefers-reduced-motion: reduce) {
+	.parallax {
+		display: none;
+	}
+
+	.intronoparallax {
+		display: flex;
+	}
+
+	.header-title {
+		margin-top: 0;
+		animation: none;
 	}
 }

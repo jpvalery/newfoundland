@@ -5,7 +5,14 @@
 import fs from 'node:fs'
 import * as esbuild from 'esbuild'
 
-const STATIC_FILES = ['index.html', 'favicon.ico', 'css', 'fonts', 'img']
+const STATIC_FILES = [
+  'index.html',
+  'favicon.ico',
+  'apple-touch-icon.png',
+  'css',
+  'fonts',
+  'img',
+]
 
 const options = {
   entryPoints: ['src/index.js'],
