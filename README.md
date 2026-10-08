@@ -7,6 +7,20 @@ An interactive web experience telling the story of our adventures in Newfoundlan
 
 ![Lighthouse Score](https://github.com/jpvalery/newfoundland/blob/master/docs/lighthouse.png?raw=true)
 
+#### Development
+
+Requires Node 22+ and pnpm.
+
+```sh
+pnpm install
+pnpm dev      # http://localhost:8000, rebuilds app.js when src/ changes
+pnpm build    # bundles src/ and copies the site into dist/
+pnpm check    # Biome lint and format check
+pnpm format   # applies Biome fixes
+```
+
+Use `pnpm dev` to view the site locally. The map does not load when you open `index.html` from disk, because browsers block the fetch of `img/map.svg` on `file://` URLs.
+
 ⚠️ While the code of the website is under the MIT License, the content of the website including text and photos are under copyright.
 
 #### Credits

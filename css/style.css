@@ -1,45 +1,26 @@
 *,
 *::after,
 *::before {
-	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-}
-
-.clearfix::before,
-.clearfix::after {
-	content: "";
-	display: table;
-}
-
-.clearfix::after {
-	clear: both;
 }
 
 body {
 	font-family: mosk, Helvetica, Arial, sans-serif;
-	color: #434C5E;
-	background: #ECEFF4;
+	color: #434c5e;
+	background: #eceff4;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
 
 a {
 	text-decoration: none;
-	color: #88C0D0;
+	color: #88c0d0;
 	outline: none;
 }
 
 a:hover,
 a:focus {
-	color: #6DD2DA;
-}
-
-.hidden {
-	position: absolute;
-	overflow: hidden;
-	width: 0;
-	height: 0;
-	pointer-events: none;
+	color: #6dd2da;
 }
 
 /* Canvas container */
@@ -54,7 +35,6 @@ a:focus {
 /* Parallax */
 
 @keyframes fade {
-
 	from {
 		opacity: 0;
 	}
@@ -98,7 +78,7 @@ a:focus {
 }
 
 .parallax_cover {
-	background: #16161D;
+	background: #16161d;
 	transform: translateZ(0) scale(1);
 	display: block;
 	position: absolute;
@@ -139,7 +119,6 @@ a:focus {
 /* Header */
 
 @keyframes fadeup {
-
 	from {
 		opacity: 0;
 		transform: translateY(2rem);
@@ -161,8 +140,8 @@ a:focus {
 	height: 100vh;
 	padding: 2em 1em 4em;
 	text-align: center;
-	color: #ECEFF4;
-	background: #002D42 /* url(../img/journey/2.jpg) no-repeat center center*/;
+	color: #eceff4;
+	background: #002d42;
 	background-size: cover;
 }
 
@@ -205,7 +184,7 @@ a:focus {
 	display: block;
 	max-width: 720px;
 	margin: 0 auto;
-	color: #E5E9F0;
+	color: #e5e9f0;
 	font-size: 1em;
 	padding-bottom: 0.2em;
 }
@@ -215,13 +194,12 @@ a:focus {
 }
 
 .header-title__authors a {
-	color: #E5E9F0;
+	color: #e5e9f0;
 }
 
 .intro {
 	font-family: odachi, Baskerville, Garamond, serif;
 	z-index: 1000;
-	display: -webkit-flex;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -229,13 +207,13 @@ a:focus {
 	height: 100vh;
 	padding: 3em;
 	text-align: center;
-	color: #ECEFF4;
+	color: #eceff4;
 }
 
 .intronoparallax {
 	display: none;
 	font-family: odachi, Baskerville, Garamond, serif;
-	background: #16161D;
+	background: #16161d;
 	z-index: 1000;
 	flex-direction: column;
 	justify-content: center;
@@ -243,7 +221,7 @@ a:focus {
 	height: 100vh;
 	padding: 3em;
 	text-align: center;
-	color: #ECEFF4;
+	color: #eceff4;
 }
 
 .quote-intro {
@@ -260,7 +238,7 @@ a:focus {
 	position: relative;
 	top: 2em;
 	right: -4em;
-	color: #D8DEE9;
+	color: #d8dee9;
 	font-size: 1.8em;
 }
 
@@ -300,7 +278,7 @@ a:focus {
 	display: block;
 	letter-spacing: 7px;
 	text-transform: uppercase;
-	color: #CECEC5;
+	color: #cecec5;
 }
 
 .title-down {
@@ -310,27 +288,12 @@ a:focus {
 	line-height: 0.9;
 	display: block;
 	padding: 0.15em 0 0.35em;
-	color: #3B4252;
+	color: #3b4252;
 }
 
 .js-section {
 	width: 50%;
 	max-width: 700px;
-}
-
-.js-gallery {
-	padding-top: 50px;
-	padding-bottom: 50px;
-}
-
-.js-gallery-content {
-	font-size: 0;
-	text-align: center;
-}
-
-.js-gallery-content img {
-	max-width: 100%;
-	margin: 10px 0;
 }
 
 .text figure {
@@ -346,7 +309,7 @@ a:focus {
 	font-style: italic;
 	padding: 0.5em 1.5em;
 	text-align: center;
-	color: #3B4252;
+	color: #3b4252;
 }
 
 .text section p {
@@ -364,27 +327,9 @@ a:focus {
 	line-height: 1.2;
 	margin: 0.3em 0;
 	text-align: left;
-	color: #4C566A;
+	color: #4c566a;
 	font-family: odachi, sans-serif;
 	text-indent: 0;
-}
-
-/* endscreen */
-
-.endscreen {
-	position: relative;
-	z-index: 1000;
-	padding: 10em 2em;
-	text-align: center;
-	color: #ECEFF4;
-	background: #2E3440;
-}
-
-.info {
-	font-size: 2.4em;
-	font-weight: bold;
-	padding: 0;
-	margin: 0 auto;
 }
 
 /* Transitions */
@@ -410,8 +355,8 @@ a:focus {
 	z-index: 1000;
 	padding: 10em 2em;
 	text-align: center;
-	color: #ECEFF4;
-	background: #16161D;
+	color: #eceff4;
+	background: #16161d;
 }
 
 .col_footer {
@@ -433,8 +378,6 @@ a:focus {
 ul {
 	padding-left: 1em;
 	list-style-type: circle;
-
-	/* list-style-image: url('../img/ferry.svg'); */
 }
 
 li {
@@ -445,13 +388,11 @@ li {
 /* Responsive Medium */
 
 @media (max-width: 1280px) {
-
 	.parallax {
 		display: none;
 	}
 
 	.intronoparallax {
-		display: -webkit-flex;
 		display: flex;
 	}
 
@@ -480,7 +421,6 @@ li {
 
 /* Responsive Small */
 @media (max-width: 720px) {
-
 	.header-title {
 		font-size: 1.5em;
 	}
@@ -506,20 +446,8 @@ li {
 		max-width: none;
 	}
 
-	.col_shop {
-		max-width: none;
-	}
-
 	.col_footer {
 		max-width: 70%;
-	}
-
-	.info {
-		font-size: 1.5em;
-	}
-
-	.availability {
-		font-size: 1em;
 	}
 
 	.quote-intro-author {
@@ -527,10 +455,9 @@ li {
 	}
 }
 
-/* Responsive Small */
+/* Responsive Extra Small */
 
 @media (max-width: 360px) {
-
 	.col_footer {
 		max-width: 100%;
 	}
@@ -557,7 +484,6 @@ li {
 /* Responsive Parallax */
 
 @media only screen and (max-width: 2000px) {
-
 	.parallax_layer {
 		left: -20%;
 		width: 150%;
@@ -565,7 +491,6 @@ li {
 }
 
 @media only screen and (max-width: 900px) {
-
 	.parallax_layer {
 		left: -50%;
 		width: 200%;
@@ -573,7 +498,6 @@ li {
 }
 
 @media only screen and (max-width: 600px) {
-
 	.parallax_layer {
 		left: -100%;
 		width: 300%;

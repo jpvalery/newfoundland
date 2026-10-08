@@ -1,5 +1,5 @@
-export default function createCanvas (width, height, dpiAware = false) {
-  let canvas = document.createElement('canvas')
+export default function createCanvas(width, height, dpiAware = false) {
+  const canvas = document.createElement('canvas')
   let multiplier = 1
   if (dpiAware) {
     multiplier = window.devicePixelRatio
