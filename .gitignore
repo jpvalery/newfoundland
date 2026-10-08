@@ -1,4 +1,5 @@
 node_modules
-.cache/
-public/
 .DS_Store
+dist
+/app.js
+/app.css
